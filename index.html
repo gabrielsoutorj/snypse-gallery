@@ -19,23 +19,7 @@ main{position:relative;z-index:1;max-width:1440px;margin:auto;padding:26px 36px 
 <div class="filters" id="filters"></div><div class="grid" id="grid"></div>
 </main><div class="modal" id="modal"><span class="close">&times;</span><div id="viewer"></div></div>
 <script>
-const items=[
-{category:"Automotive",title:"Automotive Preview 01",file:"assets/BR_Autos 01.mp4",type:"video"},
-{category:"Automotive",title:"Automotive Preview 02",file:"assets/BR_Autos 02.mp4",type:"video"},
-{category:"Automotive",title:"Automotive Preview 03",file:"assets/BR_Autos 03.mp4",type:"video"},
-{category:"Automotive",title:"Automotive Preview 04",file:"assets/BR_Autos 04.mp4",type:"video"},
-{category:"Automotive",title:"Automotive Preview 05",file:"assets/BR_Autos 05.mp4",type:"video"},
-{category:"Automotive",title:"Automotive Preview 06",file:"assets/BR_Autos 06.mp4",type:"video"},
-{category:"Automotive",title:"Automotive Preview 07",file:"assets/BR_Autos 07.mp4",type:"video"},
-{category:"Finance",title:"Finance Preview 01",file:"assets/BR_Finance 01.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 02",file:"assets/BR_Finance 02.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 03",file:"assets/BR_Finance 03.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 04",file:"assets/BR_Finance 04.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 05",file:"assets/BR_Finance 05.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 06",file:"assets/BR_Finance 06.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 07",file:"assets/BR_Finance 07.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 08",file:"assets/BR_Finance 08.jpg",type:"image"},
-{category:"Finance",title:"Finance Preview 10",file:"assets/BR_Finance 10.jpg",type:"image"}];
+const items=[];
 let active="All";const filters=document.querySelector("#filters"),grid=document.querySelector("#grid");
 function render(){let cats=["All",...new Set(items.map(x=>x.category))];filters.innerHTML=cats.map(c=>`<button class="${c===active?"active":""}" onclick="active='${c}';render()">${c}</button>`).join("");grid.innerHTML=items.filter(x=>active==="All"||x.category===active).map((x,i)=>`<article class="card"><div class="phone-stage"><div class="phone"><div class="island"></div><div class="phone-screen"><div class="phone-status"><span>9:41</span><span>● ● ▰</span></div><div class="community-head"><div class="community-avatar">M</div><div><div class="community-name">Magfi Preview</div><div class="community-sub">Community preview</div></div></div><div class="phone-feed">${x.type==="video"?`<video autoplay loop muted playsinline preload="auto" src="${x.file}"></video>`:`<img src="${x.file}" alt="${x.title}">`}</div></div><div class="scroll-hint">scroll ↕</div></div></div><div class="meta"><div class="cat">${x.category}</div><div class="title">${x.title}</div><div class="sub">Magfi Preview · ${x.type==="video"?"Video":"Image"}</div></div></article>`).join("")}
 function show(file,type){const m=document.querySelector("#modal"),v=document.querySelector("#viewer");v.innerHTML=type==="video"?`<video autoplay loop muted playsinline controls src="${file}"></video>`:`<img src="${file}">`;m.classList.add("open")}
